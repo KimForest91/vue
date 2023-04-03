@@ -1,5 +1,6 @@
 <script setup>
 import TheWelcome from './components/TheWelcome.vue'
+import Discount from './components/Discount.vue'
 </script>
 
 <template>
@@ -11,16 +12,19 @@ import TheWelcome from './components/TheWelcome.vue'
     </ul>
   </header>
   <main id="main">
+    <Discount></Discount>
     <div class="black_bg" v-if="modal === true">
       <div class="white_bg">
-        <h5>상세페이지임</h5>
-        <span>상세페이지 내용임</span>
+        <img alt="room image" :src="rooms[modal_content].image">
+        <h5>{{ rooms[modal_content].title }}</h5>
+        <span>{{ rooms[modal_content].content }}</span>
+        <span>월 {{ rooms[modal_content].price }} 원</span>
         <button @click="modal = false">닫기</button>
       </div>
     </div>
     <div v-for="(data, i) in data" :key="data" class="goods">
-      <img alt="room1" :src="rooms[i].image">
-      <h4>{{ rooms[i].title }}</h4>
+      <img alt="room image" :src="rooms[i].image">
+      <h4 @click="modal = true; modal_content = i">{{ rooms[i].title }}</h4>
       <p>{{ rooms[i].price }} 원</p>
       <button @click="count[i]++">허위매물신고</button><span>신고수 : {{ count[i] }}</span>
     </div> 
@@ -32,17 +36,17 @@ import TheWelcome from './components/TheWelcome.vue'
 <script>
 import data from './assets/js/data.js';
 
+
 export default {
   name: 'App',
   data() {
     return {
       //데이터보관함
       menus : ['Home', 'rooms', 'About'],
-      products: ['역삼동원룸', '천호동원룸', '마포구원룸'],
-      price: [50, 20, 100],
       count: [0, 0, 0],
       modal: false,
       rooms : data,
+      modal_content : 0,
     }
   },
   methods: {
@@ -52,7 +56,7 @@ export default {
 
   },
   components: {
-
+    Discount : Discount,
   }
 }
 

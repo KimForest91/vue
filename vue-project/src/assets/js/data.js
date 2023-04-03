@@ -16,7 +16,7 @@ let data = [{
   id : 2,
   title: "Geumsan Apartment Flat",
   image: "https://codingapple1.github.io/vue/room2.jpg",
-  content: "금산오거리 역세권 아파트입니다. 애완동물 불가능 ?",
+  content: "금산오거리 역세권 아파트입니다. 반려동물 가능",
   price: 780000
   },
   {
@@ -30,7 +30,7 @@ let data = [{
   id : 4,
   title: "MyeongIl Apartment flat",
   image: "https://codingapple1.github.io/vue/room4.jpg",
-  content: "탄천동 아파트 월세, 남향, 역 5분거리, 허위매물아님",
+  content: "탄천동 아파트 월세, 남향, 역 5분거리, 부동산 확인매물",
   price: 680000
   },
   {
