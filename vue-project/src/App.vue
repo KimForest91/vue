@@ -11,36 +11,26 @@ import TheWelcome from './components/TheWelcome.vue'
     </ul>
   </header>
   <main id="main">
-<!--     <div v-for="(product, i) in products" :key="product">
-      <h4>{{products[i]}}</h4>
-      <p>{{ price[i] }} 만원</p>
-    </div> -->
-    <div>
-      <h4>{{ products[0] }}</h4>
-      <p>{{ price[0] }} 만원</p>
-      <button @click="count[0]++">허위매물신고</button><span>신고수 : {{ count[0] }}</span>
+    <div class="black_bg" v-if="modal === true">
+      <div class="white_bg">
+        <h5>상세페이지임</h5>
+        <span>상세페이지 내용임</span>
+        <button @click="modal = false">닫기</button>
+      </div>
     </div>
-    <div>
-      <h4>{{ products[1] }}</h4>
-      <p>{{ price[1] }} 만원</p>
-      <button @click="count[1]++">허위매물신고</button><span>신고수 : {{ count[1] }}</span>
-    </div>
-    <div>
-      <h4>{{ products[2] }}</h4>
-      <p>{{ price[2] }} 만원</p>
-      <button @click="count[2]++">허위매물신고</button><span>신고수 : {{ count[2] }}</span>
-    </div>
+    <div v-for="(data, i) in data" :key="data" class="goods">
+      <img alt="room1" :src="rooms[i].image">
+      <h4>{{ rooms[i].title }}</h4>
+      <p>{{ rooms[i].price }} 원</p>
+      <button @click="count[i]++">허위매물신고</button><span>신고수 : {{ count[i] }}</span>
+    </div> 
   </main>
 
 </div>
-
-
-
-
 </template>
 
 <script>
-
+import data from './assets/js/data.js';
 
 export default {
   name: 'App',
@@ -51,12 +41,15 @@ export default {
       products: ['역삼동원룸', '천호동원룸', '마포구원룸'],
       price: [50, 20, 100],
       count: [0, 0, 0],
+      modal: false,
+      rooms : data,
     }
   },
   methods: {
     increase() {
       this.count += 1;
-    }
+    },
+
   },
   components: {
 
@@ -72,7 +65,17 @@ export default {
   ul > li {float: left;}
   ul > li > a {color: aliceblue; padding: 10px 20px; display: block;}
 
-  div > h4 {font-weight: 800; font-size: 24px;}
-  div > p {font-size: 24px; color: blue;}
+  div {text-align: center; box-sizing: border-box;} 
+  div > img {width: 100%; margin-top: 40px;}
+  div > h4 {font-weight: 800; font-size: 18px; margin: 15px 0 5px 0;}
+  div > h5 {font-weight: 800; font-size: 16px; margin-bottom: 20px;}
+  div > p {font-size: 14px; color: blue; margin-bottom: 20px;}
+  div > span {margin-bottom: 20px;}
+  div.goods button {margin-right: 20px;}
 
+  
+  .black_bg {position: fixed; left: 0; top: 0; padding: 20px; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.5); z-index: 1000;}
+  .white_bg {width: 100%; background: white; border-radius: 8px; padding: 20px;}
+  .white_bg > span {display: block;}
 </style>
+ 
