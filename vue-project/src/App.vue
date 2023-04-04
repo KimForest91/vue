@@ -1,6 +1,9 @@
 <script setup>
 import TheWelcome from './components/TheWelcome.vue'
 import Discount from './components/Discount.vue'
+import Modal from './components/Modal.vue'
+import CardList from './components/CardList.vue'
+
 </script>
 
 <template>
@@ -12,22 +15,9 @@ import Discount from './components/Discount.vue'
     </ul>
   </header>
   <main id="main">
-    <Discount></Discount>
-    <div class="black_bg" v-if="modal === true">
-      <div class="white_bg">
-        <img alt="room image" :src="rooms[modal_content].image">
-        <h5>{{ rooms[modal_content].title }}</h5>
-        <span>{{ rooms[modal_content].content }}</span>
-        <span>월 {{ rooms[modal_content].price }} 원</span>
-        <button @click="modal = false">닫기</button>
-      </div>
-    </div>
-    <div v-for="(data, i) in data" :key="data" class="goods">
-      <img alt="room image" :src="rooms[i].image">
-      <h4 @click="modal = true; modal_content = i">{{ rooms[i].title }}</h4>
-      <p>{{ rooms[i].price }} 원</p>
-      <button @click="count[i]++">허위매물신고</button><span>신고수 : {{ count[i] }}</span>
-    </div> 
+    <Discount />
+    <Modal :rooms="rooms" :modal="modal" :modal_content="modal_content" />
+    <CardList :rooms="rooms" :modal="modal" :modal_content="modal_content" :count="count" />
   </main>
 
 </div>
@@ -57,6 +47,8 @@ export default {
   },
   components: {
     Discount : Discount,
+    Modal : Modal,
+    CardList : CardList,
   }
 }
 
@@ -78,8 +70,5 @@ export default {
   div.goods button {margin-right: 20px;}
 
   
-  .black_bg {position: fixed; left: 0; top: 0; padding: 20px; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.5); z-index: 1000;}
-  .white_bg {width: 100%; background: white; border-radius: 8px; padding: 20px;}
-  .white_bg > span {display: block;}
+
 </style>
- 
