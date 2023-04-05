@@ -1,8 +1,8 @@
 <script setup>
-import TheWelcome from './components/TheWelcome.vue'
-import Discount from './components/Discount.vue'
-import Modal from './components/Modal.vue'
-import CardList from './components/CardList.vue'
+import TheWelcome from './components/TheWelcome.vue';
+import Discount from './components/Discount.vue';
+import Modal from './components/Modal.vue';
+import CardList from './components/CardList.vue';
 
 </script>
 
@@ -16,8 +16,8 @@ import CardList from './components/CardList.vue'
   </header>
   <main id="main">
     <Discount />
-    <Modal :rooms="rooms" :modal="modal" :modal_content="modal_content" />
-    <CardList :rooms="rooms" :modal="modal" :modal_content="modal_content" :count="count" />
+    <Modal :rooms="rooms" :modal="modal" :modal_content="modal_content" @closeModal="modal = false" />
+    <CardList @modal="modal = true; modal_content = $event" v-for="(card, i) in rooms" :key="data" :rooms="rooms[i]" :modal="modal" :modal_content="modal_content" />
   </main>
 
 </div>
@@ -33,16 +33,12 @@ export default {
     return {
       //데이터보관함
       menus : ['Home', 'rooms', 'About'],
-      count: [0, 0, 0],
       modal: false,
       rooms : data,
       modal_content : 0,
     }
   },
-  methods: {
-    increase() {
-      this.count += 1;
-    },
+  mothods: {
 
   },
   components: {
@@ -69,6 +65,5 @@ export default {
   div > span {margin-bottom: 20px;}
   div.goods button {margin-right: 20px;}
 
-  
 
 </style>

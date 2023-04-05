@@ -1,28 +1,33 @@
 <template>
-<div v-for="(data, i) in data" :key="data" class="goods">
-  <img alt="room image" :src="rooms[i].image">
-  <h4 @click="modal = true; modal_content = i">{{ rooms[i].title }}</h4>
-  <p>{{ rooms[i].price }} 원</p>
-  <button @click="count[i]++">허위매물신고</button><span>신고수 : {{ count[i] }}</span>
-</div> 
+  <div class="goods">
+    <img alt="room image" :src="rooms.image">
+    <h4 @click="openModal">{{ rooms.title }}</h4>
+    <p>{{ rooms.price }} 원</p>
+    <button @click="count++">허위매물신고</button><span>신고수 : {{ count }}</span>
+  </div> 
 </template>
-
 <script>
 
 
 export default {
   name : 'CardList',
+  data() {
+    return {
+      count: 0,
+    }
+  },
   methods: {
     increase() {
       this.count += 1;
     },
-
+    openModal() {
+      this.$emit('modal', this.rooms.id)
+    }
   },
   props: {
-    rooms : Array,
+    rooms : Object,
     modal: Boolean,
     modal_content : Number,
-    count : Array,
   }
 }
 </script>
