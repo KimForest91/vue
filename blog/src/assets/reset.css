@@ -3,7 +3,6 @@
 /* reset */
 
 html {line-height: 1.2; -webkit-text-size-adjust: 100%;}
-body {margin: 0;}
 main {display: block;}
 * {box-sizing: border-box;}
 h1, h2, h3, h4, h5, h6, ul, ol, li, dl, dt, dd, p, table, blockquote, pre, code {margin: 0; padding: 0;}
