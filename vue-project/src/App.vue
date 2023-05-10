@@ -15,6 +15,7 @@ import CardList from './components/CardList.vue';
     </ul>
   </header>
   <main id="main">
+    <h1>테스트테스트</h1>
     <Discount v-if="showDiscount === true" />
     <button @click="priceSort">가격순 정렬</button>
     <button @click="priceBackSort">가격 역순 정렬</button>
